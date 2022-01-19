@@ -1,0 +1,23 @@
+<h1>questions</h1>
+
+{% for q in question %}
+
+<p>{{q.question}}</p>
+
+
+
+<form action="questions"  method = 'POST'>
+    {% csrf_token %} 
+  <label >Choose a answer:</label>
+  <select name="choice{{ forloop.counter }}" id="cars">
+      {%  for c in choices %}
+      {% if c.question_id_id == q.id %}
+    <option value={{c.choices}}>{{c.choices}}</option>
+    <input name="q_id" hidden value={{q.id}} type="text">
+        {% endif %}
+        {%  endfor %}
+  </select>
+  {% endfor %}
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
